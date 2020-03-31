@@ -1,0 +1,190 @@
+
+<div class="container">
+	<div class="row">
+			<div class="col-sm-8">
+				<form #f="ngForm" (ngSubmit)="save(f.value)">
+					<div class="form-group">
+		
+						<label for="title">Product Title</label>
+						<input required type="text" id="title" name="title" #title="ngModel" [(ngModel)]="product.title" class="form-control">
+						<div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+							<div *ngIf="title.errors.required">
+								This field is required
+							</div>
+						</div> 
+		
+					</div>
+		
+					<div class="form-group">
+		
+							
+						<label for="price">Product Price</label>
+						
+						<div class="input-group">
+		
+							<div class="input-group-prepend">
+								<span class="input-group-text">$</span>
+							</div>		
+							<input required type="number" id="price" name="price" #price="ngModel" [(ngModel)]="product.price" class="form-control" [min]="0">
+		
+						</div>
+							<div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+								<div *ngIf="price.errors.required">
+									This field is required
+								</div>
+								<div *ngIf="price.errors.min">
+									Price should not be negative
+								</div>
+							</div>
+		
+					</div>
+		
+					<div class="form-group">
+		
+						<label for="category">Product Category</label>
+						<select required name="" id="category" name="category" #category="ngModel" [(ngModel)]="product.category" class="form-control">
+							<option value=""></option>
+							<option 
+								*ngFor="let c of categories$ | async"
+								[value]="c.key">
+								
+								{{ c.name }}
+		
+							</option>
+							
+						</select>
+						<div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+							<div *ngIf="category.errors.required">
+								This field is required
+							</div>
+						</div> 
+		
+					</div>
+		
+					<div class="form-group">
+		
+						<div  class="form-check">
+							<input 
+								#typeUpload 
+								(change)="imageType = typeUpload.value"
+								class="form-check-input" 
+								type="radio" 
+								name="image_type" 
+								id="image-type-upload" 
+								value="upload" 
+								checked
+							>
+							<label class="form-check-label" for="image-type-upload">
+								Upload Image
+							</label>
+						</div>
+						
+						<div class="form-check">
+							<input 
+								#typeUrl
+								(change)="imageType = typeUrl.value"
+								class="form-check-input" 
+								type="radio" 
+								name="image_type" 
+								id="image-type-url" 
+								value="url"
+							>
+							<label class="form-check-label" for="image-type-url">
+								Type URL
+							</label>
+						</div>
+		
+		
+					</div>
+
+					
+		
+					<div 
+						class="form-group"
+						[ngSwitch]="imageType"
+					>
+						
+						<ng-container *ngSwitchCase="'url'">
+							<label for="image">Image URL</label>
+							<input 
+								required url 
+								type="text" id="image" 
+								name="imageUrl" #imageUrl="ngModel" 
+								[(ngModel)]="product.imageUrl" class="form-control" 
+							>
+
+							<div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+								<div *ngIf="imageUrl.errors.required">
+									This field is required.
+								</div>
+								<div *ngIf="imageUrl.errors.url">
+									This should contain a valid url.
+								</div>
+							</div> 
+						</ng-container>
+
+						<ng-container *ngSwitchDefault>
+							<label for="image">Image Upload</label>
+							<!-- <input required url type="text" id="image" name="imageUrl" #imageUrl="ngModel" [(ngModel)]="product.imageUrl" class="form-control" > -->
+							<input 
+								#imageFile="ngModel"
+								[(ngModel)]="product.imageFile"
+								required 
+								type="file" 
+								(change)="uploadImage($event)" 
+								accept=".png,.jpg" 
+								name="image_file"
+							/>
+							
+						</ng-container>
+
+						<div>
+							<br>
+							<ngb-progressbar *ngIf="(uploadProgress$ | async) === 0" [showValue]="true" type="info" [value]="uploadProgress$ | async | number:'1.2-2' "></ngb-progressbar>
+							<br>
+						</div>
+						<!-- <div 
+							class="alert alert-danger" 
+							*ngIf="imageFile.touched && imageFile.invalid">
+						
+							<div *ngIf="imageFile.errors.required">
+								An Image is required!
+							</div>
+						</div> -->
+
+						
+
+						
+
+						
+		
+					</div>
+		
+					<button [disabled]="f.invalid" type="submit" class="submit-button btn btn-primary">Save Product</button>
+					<button *ngIf="this.id" type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+				</form>
+			</div>
+		
+		
+		
+			<div class="col-sm-4 product-card-container">
+		
+				<product-card [product]="product" [show-actions]="false"></product-card>
+		
+			</div>
+	</div>
+</div>
+
+<!-- <button class="btn btn-warning" (click)="log(f)">log ngForm</button> -->
+<!-- 
+<button class="btn btn-warning" (click)="seeCategories()">
+	test categories
+</button>
+
+
+	<pre>
+		{{ categories }}	
+	</pre>
+
+
+ -->

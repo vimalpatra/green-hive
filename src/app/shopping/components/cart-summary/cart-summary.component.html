@@ -1,0 +1,87 @@
+<!-- <div class="row justify-content-end">
+
+	<div class="card col">
+	 
+		<div class="card-body">
+			
+			<h5 class="card-title">Order Summary</h5>
+			
+			<p class="card-text">You have {{ cart.totalItemsCount }} items in your shopping cart.</p>
+			
+			<div class="list-group list-group-flush">
+				<div *ngFor="let item of cart.items" class="list-group-item">
+					{{ item.quantity }} x {{ item.title }}
+
+					<div class="float-right">
+						{{ item.totalPrice | currency:'USD':symbol }}
+					</div>
+				</div>
+				<div class="list-group-item font-weight-bold">
+					Total
+					<div class="float-right">
+						{{ cart.totalPrice | currency:'USD':true }}
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div> -->
+
+<div class="how-bor4 p-t-35 p-b-40 p-rl-30 m-t-5">
+	<h4 class="txt-m-124 cl3 p-b-11">
+		Your order
+	</h4>
+
+	<div class="flex-w flex-sb-m txt-m-103 cl6 bo-b-1 bocl15 p-b-21 p-t-18">
+		<span>
+			Product
+		</span>
+
+		<span>
+			Total
+		</span>
+	</div>
+	
+	<!--  -->
+	<div 
+		class="flex-w flex-sb-m txt-s-101 cl6 bo-b-1 bocl15 p-b-21 p-t-18"
+		*ngFor="let item of cart.items"
+	>
+		<span>
+			{{ item.title }}
+			<img class="m-rl-3 cart-summary-thumb" [src]="item.imageUrl" alt="icon">
+			 X {{ item.quantity }}
+		</span>
+
+		<span>
+			{{ item.totalPrice | currency: 'USD': true }}
+		</span>
+	</div>
+
+	
+	
+	<!--  -->
+	<!-- <div class="flex-w flex-m txt-m-103 bo-b-1 bocl15 p-tb-23">
+		<span class="size-w-61 cl6">
+			Subtotal
+		</span>
+
+		<span class="size-w-62 cl9">
+			48$
+		</span>
+	</div> -->
+
+	<div class="flex-w flex-m txt-m-103 p-tb-23">
+		<span class="size-w-61 cl6">
+			Total
+		</span>
+
+		<span class="size-w-62 cl10">
+			{{ cart.totalPrice | currency: 'USD': true }}
+		</span>
+	</div>
+
+</div>

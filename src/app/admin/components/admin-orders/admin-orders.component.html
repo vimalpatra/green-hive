@@ -1,0 +1,117 @@
+<!-- <div class="row">
+	<div class="col-sm-10">
+		<h1>Manage all orders</h1>
+	</div>
+</div>
+
+<div class="row" *ngIf="orders$ | async as orders">
+	
+	<table class="table table-borderless">
+		<thead>
+			<tr>
+				<th>Customer Name</th>
+				<th>Date</th>
+				<th></th>
+			</tr>
+			<tr *ngFor="let order of orders">
+				<td>{{ order.shippingDetails.name }}</td>
+				<td>{{ order.datePlaced | date:short }}</td>
+				<td>
+					<a [routerLink]="['/order-success/', order.key]">
+						View
+					</a>
+				</td>
+			</tr>
+		</thead>
+	</table>
+
+
+</div> -->
+
+
+
+
+
+<!-- Title page -->
+<section class="how-overlay2 bg-img1" style="background-image: url(assets/images/bg-07.jpg);">
+	<div class="container">
+		<div class="txt-center p-t-160 p-b-165">
+			<h2 class="txt-l-101 cl0 txt-center p-b-14 respon1">
+				Manage all orders
+			</h2>
+
+			<span class="txt-m-201 cl0 flex-c-m flex-w">
+				<a routerLink="/" class="txt-m-201 cl0 hov-cl10 trans-04 m-r-6">
+					Home
+				</a>
+
+				<span>
+					/ Manage Orders
+				</span>
+			</span>
+		</div>
+	</div>
+</section>
+
+<!-- content page -->
+<div class="bg0 p-tb-100">
+	<div class="container" *ngIf="orders$ | async as orders">
+		
+		<form>
+			<div class="wrap-table-shopping-cart">
+				<table class="table-shopping-cart">
+					<tr class="table_head bg12">
+						<th class="column-1 p-l-30">Customer Name</th>
+						<th class="column-2 txt-center">Date</th>
+						<th class="column-3 txt-center">Order Link</th>
+						
+					</tr>
+
+					<tr class="table_row" *ngFor="let order of orders">
+						<td class="column-1">
+							<div class="flex-w flex-m p-l-30">
+								<span>
+									{{ order.shippingDetails.name }}
+								</span>
+							</div>
+						</td>
+						<td class="column-2 txt-center">
+							{{ order.datePlaced | date:short }}
+						</td>
+						<td class="column-3 txt-center">
+							<a [routerLink]="['/order-success/', order.key]">
+								View Order
+							</a>
+							
+						</td>
+
+						<!-- <td class="column-4">
+							<div class="flex-w flex-sb-m">
+								<span>
+									{{ item.totalPrice | currency: 'USD': true }}
+								</span>
+
+								<div class="fs-15 hov-cl10 pointer">
+									<span class="lnr lnr-cross"></span>
+								</div>
+							</div>
+						</td> -->
+					</tr>
+									
+				</table>
+			</div>
+
+		
+
+			<div class="flex-col-l p-t-68">
+				<a 
+					class="flex-c-m txt-s-105 cl0 bg10 size-a-34 hov-btn2 trans-04 p-rl-10 m-t-43"
+					routerLink="/admin/products"
+				>
+					Manage Products
+				</a>		
+			</div>
+
+		</form>
+	</div>
+</div>

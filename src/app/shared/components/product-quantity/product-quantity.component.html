@@ -1,0 +1,72 @@
+
+
+<ng-container *ngIf="design == 'cart'; then cartDesign else normal"></ng-container>
+
+<ng-template #normal>
+
+	<div class="row no-gutters">
+		<div class="col-3 flex-c-m">
+		
+			<button 
+				(click)="removeFromCart()" 
+				class="block1-icon flex-c-m wrap-pic-max-w minus-button">
+				-
+			</button>
+		
+		</div>
+		
+		<div class="col">
+			<div class="show-quantity text-center">
+				{{ cart.getQuantity(product) }} in cart
+			</div>
+		</div>
+	
+		<div class="col-3 flex-c-m" >
+	
+			<button 
+				(click)="addToCart()" 
+				class="block1-icon flex-c-m wrap-pic-max-w js-addwish-b1 plus-button">
+					+
+			</button>
+	
+		</div>
+	</div>
+
+</ng-template>
+
+<ng-template #cartDesign>
+
+	<div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
+		
+		<div (click)="removeFromCart()" 
+			class="btn-num-product-down flex-c-m fs-29"
+		>
+		</div>
+
+		<input 
+			class="txt-m-102 cl6 txt-center num-product" 
+			type="number" name="num-product1" value="{{ cart.getQuantity(product) }}"
+		>
+		
+		<div (click)="addToCart()" 
+			class="btn-num-product-up flex-c-m fs-16"
+		>
+		</div>
+
+	</div>
+	
+</ng-template>
+
+
+
+
+
+
+
+<!-- <div class="wrap-num-product flex-w flex-m bg12 p-rl-10">
+	<div class="btn-num-product-down flex-c-m fs-29"></div>
+
+	<input class="txt-m-102 cl6 txt-center num-product" type="number" name="num-product2" value="1">
+
+	<div class="btn-num-product-up flex-c-m fs-16"></div>
+</div> -->

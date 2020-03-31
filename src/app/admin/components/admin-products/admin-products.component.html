@@ -1,0 +1,117 @@
+
+<!-- old bootstrap table -->
+<!-- 
+<table class="table">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Price</th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr *ngFor="let p of filteredProducts">
+			<td>{{ p.val.title }}</td>
+			<td>{{ p.val.price }}</td>
+			<td>
+				<a [routerLink]="['/admin/products/', p.key]">Edit</a>
+			</td>
+		</tr>
+	</tbody>
+</table> -->
+
+
+
+<!-- Title page -->
+<section class="how-overlay2 bg-img1" style="background-image: url(assets/images/bg-07.jpg);">
+	<div class="container">
+		<div class="txt-center p-t-160 p-b-165">
+			<h2 class="txt-l-101 cl0 txt-center p-b-14 respon1">
+				Manage Products
+			</h2>
+
+			<span class="txt-m-201 cl0 flex-c-m flex-w">
+				<a routerLink="/" class="txt-m-201 cl0 hov-cl10 trans-04 m-r-6">
+					Home
+				</a>
+
+				<span>
+					/ Manage Products
+				</span>
+			</span>
+		</div>
+	</div>
+</section>
+
+<!-- content page -->
+<div class="bg0 p-tb-100">
+	<div class="container">
+		<div>
+			<a routerLink="/admin/products/new" class="btn btn-primary">
+				Add New Product
+			</a>
+	
+
+			<div class="size-a-21 pos-relative">
+				<input #term (input)="filter(term.value)" 
+					class="search-field s-full bo-all-1 bocl15 p-rl-20" type="text" 
+					name="search" 
+					placeholder="Search products..."
+				>
+				
+				<button (click)="filter(term.value)" class="flex-c-m fs-18 size-a-22 ab-t-r hov11">
+					<img class="hov11-child trans-04" src="assets/images/icons/icon-search.png" alt="ICON">
+				</button>
+			</div>
+		</div>
+		
+		<data-table
+			[items]="items"
+			[itemCount]="itemCount"
+			(reload)="reloadItems($event)"
+			[limit]="10"
+		>
+			
+			<data-table-column
+				[property]="'title'"
+				[header]="'Title'"
+				[sortable]="true"
+				[resizable]="true"
+			>
+		
+				
+			</data-table-column>
+		
+		
+		
+			<data-table-column
+				[property]="'price'"
+				[header]="'Price'"
+				[sortable]="true"
+				[resizable]="true"
+			>
+				<ng-template #dataTableCell let-item="item">
+					{{ item.price | currency : USD : 'symbol'}}
+				</ng-template>
+		
+			</data-table-column>
+		
+		
+		
+		
+			<data-table-column
+				[property]="'key'"
+				[header]="'Edit Product'"
+			>
+				<ng-template #dataTableCell let-item="item">
+					<a [routerLink]="['/admin/products/', item.key]">Edit</a>
+				</ng-template>
+		
+			</data-table-column>
+		
+		
+		
+		</data-table>
+	</div>
+</div>

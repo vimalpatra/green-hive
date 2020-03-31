@@ -1,0 +1,158 @@
+<!-- <div class="product-filter">
+	<div class="list-group">
+		<a class="list-group-item list-group-item-action" 
+			routerLink="/shop"
+			[class.active]="!category"
+		>
+			All Categories
+		</a>
+
+		<a *ngFor="let c of categories$ | async" 
+			class="list-group-item list-group-item-action"
+			[class.active]="category === c.key"
+			routerLink="/shop"
+			[queryParams]="{ category: c.key }"
+		>
+			{{ c.name }}
+		</a>
+	</div>
+
+
+</div> -->
+
+
+
+<div class="leftbar p-t-15 sticky-top product-filter">
+
+	<!--  -->
+	<div class="rs1-select2 bg0 bo-all-1 bocl15 m-tb-7">
+		<select
+			#sort="ngModel"
+			[(ngModel)]="sortValue"
+			(change)="selectSort(sort.value)" 
+			class="js-select2 sortSelect" 
+			name="sort"
+		>
+			<option value="">No Sort</option>
+			<option value="name_a">A to Z</option>
+			<option value="name_d">Z to A</option>
+			<option value="price_a">Price Low to High</option>
+			<option value="price_d">Price High to Low</option>
+		</select>
+	</div>
+
+	<div class="size-a-21 pos-relative">
+		<input #term="ngModel"
+			[(ngModel)]="searchValue"
+			(input)="inputSearch(term.value)" 
+			class="s-full bo-all-1 bocl15 p-rl-20" 
+			type="text"
+			name="search" 
+			placeholder="Search products..."
+		>
+
+		<button (click)="inputSearch(term.value)" class="flex-c-m fs-18 size-a-22 ab-t-r hov11">
+			<img class="hov11-child trans-04" src="assets/images/icons/icon-search.png" alt="ICON">
+		</button>
+	
+	</div>
+		
+	<!--  -->
+	<div class="p-t-40">
+		<h4 class="txt-m-101 cl3 p-b-37">
+			Categories
+		</h4>
+
+		<ul>
+			<li class="p-b-5">
+				<!-- <a class="list-group-item list-group-item-action" 
+					routerLink="/shop"
+					[class.active]="!category"
+				>
+					All Categories
+				</a> -->
+		
+				
+				<a 
+					routerLink="/shop"
+					[class.active]="!category"
+					class="flex-sb-m flex-w txt-s-101 cl6 hov-cl10 trans-04 p-tb-3"
+				>
+					<span class="m-r-10">
+						All Categories
+					</span>
+
+					<!-- <span>
+						3
+					</span> -->
+				</a>
+			</li>
+
+			<li class="p-b-5">
+				<!-- <a *ngFor="let c of categories$ | async" 
+					class="list-group-item list-group-item-action"
+					[class.active]="category === c.key"
+					routerLink="/shop"
+					[queryParams]="{ category: c.key }"
+				>
+					{{ c.name }}
+				</a> -->
+				
+				<a 
+					*ngFor="let c of categories$ | async"
+					class="flex-sb-m flex-w txt-s-101 cl6 hov-cl10 trans-04 p-tb-3"
+					[class.active]="category === c.key"
+					routerLink="/shop"
+					[queryParams]="{ category: c.key }"
+				>
+
+					<span class="m-r-10">
+						{{ c.name }}
+					</span>
+
+					<!-- <span>
+						5
+					</span> -->
+				</a>
+			</li>
+
+			<!-- <li class="p-b-5">
+				<a href="#" class="flex-sb-m flex-w txt-s-101 cl6 hov-cl10 trans-04 p-tb-3">
+					<span class="m-r-10">
+						Fruit Juic
+					</span>
+
+					<span>
+						9
+					</span>
+				</a>
+			</li>
+
+			<li class="p-b-5">
+				<a href="#" class="flex-sb-m flex-w txt-s-101 cl6 hov-cl10 trans-04 p-tb-3">
+					<span class="m-r-10">
+						Dried
+					</span>
+
+					<span>
+						9
+					</span>
+				</a>
+			</li>
+
+			<li class="p-b-5">
+				<a href="#" class="flex-sb-m flex-w txt-s-101 cl6 hov-cl10 trans-04 p-tb-3">
+					<span class="m-r-10">
+						Other
+					</span>
+
+					<span>
+						2
+					</span>
+				</a>
+			</li> -->
+		</ul>
+	</div>
+
+
+</div>

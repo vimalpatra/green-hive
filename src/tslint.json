@@ -8,10 +8,14 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "app",
       "kebab-case"
-    ]
+    ],
+    "indent": false,
+    "curly": false,
+    "quotemark": false
+
   }
 }
